@@ -2,8 +2,10 @@ const express = require("express");
 const app = express();
 const PORT = 8000;
 const fs = require("fs");
+const path = require("path");
 
 const users = require("./MOCK_DATA.json");
+const filePath = path.join(__dirname, "MOCK_DATA.json");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -65,7 +67,21 @@ app
     });
   })
   .delete((req, res) => {
-    return res.json({ status: "Pending" });
+    const uid = req.params.uid;
+
+    const user = users.find((user) => user.id === parseInt(uid));
+
+    if (!user) {
+      return res.json({ status: "error", message: "No such user exists" });
+    }
+
+    users.splice(user, 1);
+
+    return res.json({
+      status: "success",
+      message: "User deleted",
+      id: uid,
+    });
   });
 
 app.post("/api/users", (req, res) => {

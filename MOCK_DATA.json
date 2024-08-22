@@ -1,13 +1,5 @@
 [
   {
-    "id": 1,
-    "first_name": "Freddy",
-    "last_name": "Ginn",
-    "email": "fginn0@nps.gov",
-    "gender": "Genderqueer",
-    "job_title": "Research Associate"
-  },
-  {
     "id": 2,
     "first_name": "Rebbecca",
     "last_name": "Kershow",
