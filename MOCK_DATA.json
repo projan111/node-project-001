@@ -8045,5 +8045,13 @@
     "email": "shyam@gmail.com",
     "gender": "Male",
     "job_title": "Marketing Exe"
+  },
+  {
+    "id": 1007,
+    "first_name": "Rani",
+    "last_name": "Magar",
+    "email": "rani1@gmail.com",
+    "gender": "Female",
+    "job_title": "Chef"
   }
 ]

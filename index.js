@@ -55,11 +55,12 @@ app
     }
 
     Object.assign(user, updates);
-    
+
     fs.writeFile("MOCK_DATA.json", JSON.stringify(users), (err, data) => {
       return res.json({
         status: "Success",
         message: "User updated successfully",
+        user: user,
       });
     });
   })
