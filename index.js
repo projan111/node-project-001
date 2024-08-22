@@ -10,6 +10,16 @@ const filePath = path.join(__dirname, "MOCK_DATA.json");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use((req, res, next) => {
+  fs.appendFile(
+    "log.txt",
+    `\n ${Date.now()}: ${req.method}: ${req.path}`,
+    () => {
+      next();
+    }
+  );
+});
+
 app.get("/", (req, res) => {
   res.send("Hello World");
 });

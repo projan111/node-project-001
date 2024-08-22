@@ -1,13 +1,5 @@
 [
   {
-    "id": 2,
-    "first_name": "Rebbecca",
-    "last_name": "Kershow",
-    "email": "rkershow1@who.int",
-    "gender": "Female",
-    "job_title": "Senior Developer"
-  },
-  {
     "id": 3,
     "first_name": "Shannen",
     "last_name": "Macieja",
@@ -8045,5 +8037,21 @@
     "email": "rani1@gmail.com",
     "gender": "Female",
     "job_title": "Chef"
+  },
+  {
+    "id": 1006,
+    "first_name": "Anita",
+    "last_name": "Magar",
+    "email": "any@gmail.com",
+    "gender": "Female",
+    "job_title": "Waiteress"
+  },
+  {
+    "id": 1007,
+    "first_name": "Anita",
+    "last_name": "Magar",
+    "email": "any@gmail.com",
+    "gender": "Female",
+    "job_title": "Waiteress"
   }
 ]
