@@ -5,20 +5,19 @@ const fs = require("fs");
 const path = require("path");
 
 const users = require("./MOCK_DATA.json");
-const filePath = path.join(__dirname, "MOCK_DATA.json");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use((req, res, next) => {
-  fs.appendFile(
-    "log.txt",
-    `\n ${Date.now()}: ${req.method}: ${req.path}`,
-    () => {
-      next();
-    }
-  );
-});
+// app.use((req, res, next) => {
+//   fs.appendFile(
+//     "log.txt",
+//     `\n ${Date.now()}: ${req.method}: ${req.path}`,
+//     () => {
+//       next();
+//     }
+//   );
+// });
 
 app.get("/", (req, res) => {
   res.send("Hello World");
@@ -34,6 +33,7 @@ app.get("/users", (req, res) => {
 });
 
 app.get("/api/users", (req, res) => {
+  res.setHeader("X-myName", "Projan Gama");
   res.json(users);
 });
 
