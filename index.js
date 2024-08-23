@@ -37,14 +37,6 @@ app.get("/api/users", (req, res) => {
   res.json(users);
 });
 
-app.get("/api/users/:uid", (req, res) => {
-  const id = Number(req.params.uid);
-  //Search Query for user id in this case
-  const user = users.find((user) => user.id === id);
-
-  return res.json(user);
-});
-
 //Grouping the same routes
 app
   .route("/api/users/:uid")
@@ -52,6 +44,8 @@ app
     const id = Number(req.params.uid);
     //Search Query for user id in this case
     const user = users.find((user) => user.id === id);
+
+    if (!user) res.status(404).json({ error: "User not Found!" });
 
     return res.json(user);
   })
