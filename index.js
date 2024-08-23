@@ -10,7 +10,7 @@ app.use(express.json());
 
 dbConnection("mongodb://127.0.0.1:27017/node-project-001");
 
-app.use("/users", userRouter);
+app.use("/api/users", userRouter);
 
 app.use(logReqRes("log.txt"));
 
