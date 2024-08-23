@@ -2,12 +2,45 @@ const express = require("express");
 const app = express();
 const PORT = 8000;
 const fs = require("fs");
-const path = require("path");
+const mongoose = require("mongoose");
 
 const users = require("./MOCK_DATA.json");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+mongoose
+  .connect("mongodb://127.0.0.1:27017/node-project-001")
+  .then(() => {
+    console.log("Mongodb Connected!");
+  })
+  .catch((err) => {
+    console.log("Connection failed!!!");
+  });
+
+//Schema
+const userSchema = new mongoose.Schema({
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  gender: {
+    type: String,
+  },
+  jobTitle: {
+    type: String,
+  },
+});
+
+const User = mongoose.model("user", userSchema);
 
 // app.use((req, res, next) => {
 //   fs.appendFile(
