@@ -5,7 +5,6 @@ const {
   handleGenerateNewShortURL,
   handleGetAnalytics,
 } = require("../controllers/urlController");
-const URL = require("../models/url");
 
 urlRouter.post("/", handleGenerateNewShortURL);
 
