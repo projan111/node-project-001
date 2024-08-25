@@ -8,4 +8,8 @@ staticRoute.get("/", async (req, res) => {
   return res.render("home", { urls: allUrl });
 });
 
+staticRoute.get('/signup', (req, res) => {
+  return res.render("signup")
+})
+
 module.exports = staticRoute;

@@ -8,6 +8,7 @@ const urlRouter = require("./routes/urlRoute");
 const URL = require("./models/url");
 const path = require("path");
 const staticRoute = require("./routes/staticRouter");
+const signupRouter = require("./routes/loginUserRoute");
 
 // Middlewares ---------------------------------------------
 app.use(express.urlencoded({ extended: false }));
@@ -20,6 +21,7 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
 // Routes --------------------------------------------------
+app.use("/signup", signupRouter);
 app.use("/api/users", userRouter);
 app.use("/", staticRoute);
 
