@@ -7,6 +7,7 @@ const userRouter = require("./routes/userRoute");
 const urlRouter = require("./routes/urlRoute");
 const URL = require("./models/url");
 const path = require("path");
+const ejsRouter = require("./routes/staticRouter");
 
 // Middlewares ---------------------------------------------
 app.use(express.urlencoded({ extended: false }));
@@ -18,15 +19,10 @@ dbConnection("mongodb://127.0.0.1:27017/node-project-001");
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
-app.get("/test", async (req, res) => {
-  const urlShort = await URL.find({});
-  return res.render("home", {
-    urls: urlShort,
-  });
-});
-
 // Routes --------------------------------------------------
 app.use("/api/users", userRouter);
+app.use("/", ejsRouter);
+
 app.use("/url", urlRouter);
 app.get("/url/:shortId", async (req, res) => {
   const shortId = req.params.shortId;
