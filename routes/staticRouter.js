@@ -1,9 +1,11 @@
 const express = require("express");
+const URL = require("../models/url");
 
-const ejsRouter = express.Router();
+const staticRoute = express.Router();
 
-ejsRouter.get("/", (req, res) => {
-  return res.render("home");
+staticRoute.get("/", async (req, res) => {
+  const allUrl = await URL.find({});
+  return res.render("home", { urls: allUrl });
 });
 
-module.exports = ejsRouter
+module.exports = staticRoute;

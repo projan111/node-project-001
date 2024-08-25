@@ -7,7 +7,7 @@ const userRouter = require("./routes/userRoute");
 const urlRouter = require("./routes/urlRoute");
 const URL = require("./models/url");
 const path = require("path");
-const ejsRouter = require("./routes/staticRouter");
+const staticRoute = require("./routes/staticRouter");
 
 // Middlewares ---------------------------------------------
 app.use(express.urlencoded({ extended: false }));
@@ -21,7 +21,7 @@ app.set("views", path.resolve("./views"));
 
 // Routes --------------------------------------------------
 app.use("/api/users", userRouter);
-app.use("/", ejsRouter);
+app.use("/", staticRoute);
 
 app.use("/url", urlRouter);
 app.get("/url/:shortId", async (req, res) => {
