@@ -11,5 +11,8 @@ staticRoute.get("/", async (req, res) => {
 staticRoute.get('/signup', (req, res) => {
   return res.render("signup")
 })
+staticRoute.get('/login', (req, res) => {
+  return res.render("login")
+})
 
 module.exports = staticRoute;

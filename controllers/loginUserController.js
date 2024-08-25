@@ -9,8 +9,21 @@ async function handleLoginUserSignup(req, res) {
     password,
   });
 
-  return res.render("home");
+  return res.redirect("/");
   // return res.json({ status: "Success", msg: "User Created", data: data });
 }
 
-module.exports = { handleLoginUserSignup };
+async function handleLoginUserLogin(req, res) {
+  const { email, password } = req.body;
+
+  const user = await LoginUser.findOne({
+    email,
+    password,
+  });
+
+  if (!user) return res.json({ error: "Incorrect Email or Password" });
+
+  return res.redirect("/");
+}
+
+module.exports = { handleLoginUserSignup, handleLoginUserLogin };
