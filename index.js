@@ -9,10 +9,13 @@ const URL = require("./models/url");
 const path = require("path");
 const staticRoute = require("./routes/staticRouter");
 const signupRouter = require("./routes/loginUserRoute");
+const cookieParser = require("cookie-parser");
+const { restictToLogginedInOnly } = require("./middlewares/auth");
 
 // Middlewares ---------------------------------------------
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 
 dbConnection("mongodb://127.0.0.1:27017/node-project-001");
 
@@ -25,7 +28,7 @@ app.use("/signup", signupRouter);
 app.use("/api/users", userRouter);
 app.use("/", staticRoute);
 
-app.use("/url", urlRouter);
+app.use("/url", restictToLogginedInOnly, urlRouter);
 app.get("/url/:shortId", async (req, res) => {
   const shortId = req.params.shortId;
   const entry = await URL.findOneAndUpdate(
