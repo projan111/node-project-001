@@ -27,7 +27,7 @@ function getUser(token) {
     // console.log("Retrieving user with session ID:", id, "User:", user);
     // return user;
   } catch (error) {
-    return null;
+    return console.log("Error while login:", error);
   }
 }
 module.exports = { setUser, getUser };
