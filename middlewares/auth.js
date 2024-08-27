@@ -8,7 +8,7 @@ async function restictToLogginedInOnly(req, res, next) {
     if (!userUId) return res.redirect("/login");
 
     const user = getUser(userUId);
-    console.log(user);
+    // console.log(user);
 
     if (!user) return res.redirect("/login");
 

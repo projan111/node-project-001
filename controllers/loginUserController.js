@@ -25,13 +25,6 @@ async function handleLoginUserLogin(req, res) {
 
   if (!user) return res.json({ error: "Incorrect Email or Password" });
 
-  // console.log("user found",user)
-
-  // const testsession = uuidv4();
-  // const testUser = { name: "test setuser" };
-  // setUser(testsession, testUser);
-  // console.log(getUser(testsession));
-
   const sessionId = uuidv4();
   setUser(sessionId, user);
   res.cookie("uid", sessionId);

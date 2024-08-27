@@ -7,11 +7,6 @@ async function handleGenerateNewShortURL(req, res) {
     if (!body.url) return res.status(400).json({ error: "url is required" });
 
     const shortId = shortid.generate();
-    console.log(shortId);
-
-    // if (!req.users || !req.users._id) {
-    //   return res.status(400).json({ error: "User not authenticated" });
-    // }
 
     await URL.create({
       shortId: shortId,
