@@ -31,6 +31,7 @@ app.use("/", staticRoute);
 app.use("/url", restictToLogginedInOnly, urlRouter);
 app.get("/url/:shortId", async (req, res) => {
   const shortId = req.params.shortId;
+  // Redirect url to the generated real website
   const entry = await URL.findOneAndUpdate(
     {
       shortId,
