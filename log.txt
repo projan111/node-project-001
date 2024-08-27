@@ -65,3 +65,4 @@
  1724743777752: GET: /sugnup
  1724743967145: GET: /users
  1724743969652: GET: /user
+ 1724762043273: GET: /favicon.ico
