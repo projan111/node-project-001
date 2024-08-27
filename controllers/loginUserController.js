@@ -11,7 +11,7 @@ async function handleLoginUserSignup(req, res) {
     password,
   });
 
-  return res.redirect("/");
+  return res.redirect("/login");
   // return res.json({ status: "Success", msg: "User Created", data: data });
 }
 
@@ -25,9 +25,17 @@ async function handleLoginUserLogin(req, res) {
 
   if (!user) return res.json({ error: "Incorrect Email or Password" });
 
+  // console.log("user found",user)
+
+  // const testsession = uuidv4();
+  // const testUser = { name: "test setuser" };
+  // setUser(testsession, testUser);
+  // console.log(getUser(testsession));
+
   const sessionId = uuidv4();
   setUser(sessionId, user);
   res.cookie("uid", sessionId);
+
   return res.redirect("/");
 }
 

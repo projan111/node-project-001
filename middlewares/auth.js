@@ -1,15 +1,23 @@
 const { getUser } = require("../services/auth");
 
 async function restictToLogginedInOnly(req, res, next) {
-  const userUId = req.cookies?.uid;
-  if (!userUId) return res.redirect("/login");
+  try {
+    // console.log(req);
+    const userUId = req.cookies?.uid;
+    // console.log("Cookies", req.cookies);
+    if (!userUId) return res.redirect("/login");
 
-  const user = await getUser(userUId);
-  
-  if (!user) return res.redirect("/login");
+    const user = getUser(userUId);
+    console.log(user);
 
-  req.user = user;
-  next();
+    if (!user) return res.redirect("/login");
+
+    req.user = user;
+    next();
+  } catch (error) {
+    console.error("Error in restrictToLoggedInOnly middleware:", error);
+    return res.redirect("/login");
+  }
 }
 
 module.exports = { restictToLogginedInOnly };

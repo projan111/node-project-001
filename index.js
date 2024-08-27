@@ -15,7 +15,7 @@ const { restictToLogginedInOnly } = require("./middlewares/auth");
 // Middlewares ---------------------------------------------
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser());  
 
 dbConnection("mongodb://127.0.0.1:27017/node-project-001");
 
@@ -24,7 +24,7 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
 // Routes --------------------------------------------------
-app.use("/signup", signupRouter);
+app.use("/user", signupRouter);
 app.use("/api/users", userRouter);
 app.use("/", staticRoute);
 
