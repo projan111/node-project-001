@@ -7,7 +7,7 @@ function setUser(id, user) {
 
 function getUser(id) {
   const user = sessionIdToUserMap.get(id);
-  console.log("Retrieving user with session ID:", id, "User:", user);
+  // console.log("Retrieving user with session ID:", id, "User:", user);
   return user;
 }
 module.exports = { setUser, getUser };

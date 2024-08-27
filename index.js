@@ -10,12 +10,12 @@ const path = require("path");
 const staticRoute = require("./routes/staticRouter");
 const signupRouter = require("./routes/loginUserRoute");
 const cookieParser = require("cookie-parser");
-const { restictToLogginedInOnly } = require("./middlewares/auth");
+const { restictToLogginedInOnly, checkAuth } = require("./middlewares/auth");
 
 // Middlewares ---------------------------------------------
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cookieParser());  
+app.use(cookieParser());
 
 dbConnection("mongodb://127.0.0.1:27017/node-project-001");
 
@@ -24,9 +24,9 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
 // Routes --------------------------------------------------
-app.use("/user", signupRouter);
+app.use("/signup", signupRouter);
 app.use("/api/users", userRouter);
-app.use("/", staticRoute);
+app.use("/", checkAuth, staticRoute);
 
 app.use("/url", restictToLogginedInOnly, urlRouter);
 app.get("/url/:shortId", async (req, res) => {

@@ -3,16 +3,20 @@ const { LoginUser } = require("../models/userModel");
 const { setUser } = require("../services/auth");
 
 async function handleLoginUserSignup(req, res) {
-  const { name, email, password } = req.body;
+  try {
+    const { name, email, password } = req.body;
 
-  await LoginUser.create({
-    name,
-    email,
-    password,
-  });
+    await LoginUser.create({
+      name,
+      email,
+      password,
+    });
 
-  return res.redirect("/login");
-  // return res.json({ status: "Success", msg: "User Created", data: data });
+    console.log("User created");
+    return res.redirect("/");
+  } catch (error) {
+    console.log("Failed to create user:", error);
+  }
 }
 
 async function handleLoginUserLogin(req, res) {
@@ -23,6 +27,7 @@ async function handleLoginUserLogin(req, res) {
     password,
   });
 
+  console.log("Success login");
   if (!user) return res.json({ error: "Incorrect Email or Password" });
 
   const sessionId = uuidv4();
