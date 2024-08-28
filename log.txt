@@ -9,3 +9,4 @@
  1724841714041: GET: /url
  1724841718310: GET: /url/JrRx-MHyc/hamrobazar.com
  1724841750290: GET: /url/89o6veuqm/instagram.com
+ 1724843056166: GET: /favicon.ico
