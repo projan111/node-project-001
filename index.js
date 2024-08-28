@@ -27,24 +27,37 @@ dbConnection("mongodb://127.0.0.1:27017/node-project-001");
 app.use("/signup", signupRouter);
 app.use("/api/users", userRouter);
 
-app.use("/url", restrictTo("NORMAL"), urlRouter);
+app.use("/url", restrictTo(["NORMAL"]), urlRouter);
 app.use("/", staticRoute);
 app.get("/url/:shortId", async (req, res) => {
   const shortId = req.params.shortId;
+  // console.log("Received shortId:", shortId);
   // Redirect url to the generated real website
-  const entry = await URL.findOneAndUpdate(
-    {
-      shortId,
-    },
-    {
-      $push: {
-        visitHistory: {
-          timestamp: Date.now(),
+  try {
+    const entry = await URL.findOneAndUpdate(
+      {
+        shortId,
+      },
+      {
+        $push: {
+          visitHistory: {
+            timestamp: Date.now(),
+          },
         },
       },
+      {
+        new: true,
+      }
+    );
+    if (!entry) {
+      // Handle the case where the shortId was not found
+      return res.status(404).send("Short URL not found");
     }
-  );
-  res.redirect(entry.redirectURL);
+    res.redirect(entry.redirectURL);
+  } catch (error) {
+    console.error("Error finding and updating URL:", error);
+    res.status(500).send("An error occurred");
+  }
 });
 
 // Logs --------------------------------------------------------------
