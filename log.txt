@@ -1,2 +1,5 @@
 
  1724771239612: GET: /favicon.ico
+ 1724829043060: GET: /favicon.ico
+ 1724829840603: GET: /user/login
+ 1724829973625: GET: /signup/login
